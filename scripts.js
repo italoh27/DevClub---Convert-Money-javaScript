@@ -5,31 +5,35 @@ const optionselect = document.querySelector(".select-option")
 
 
 
-function ConverterValor() {
+const ConverterValor = async ()=> {
 
     const inputvalor = document.querySelector(".input-valor").value
     const realvalorconverter = document.querySelector(".valor-real")
-    const dolarvalorconvertido = document.querySelector(".valor-dolar")
+    const valorconvertido = document.querySelector(".valor")
 
     console.log(optionselect.value)
    
 
-    const valordodolar = 5.2
-    const valordoeuro = 6.2
+    const data = await fetch ("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL").then(response => response.json())
+   
+
+    const valordodolar = data.USDBRL.high
+    const valordoeuro = data.EURBRL.high
     const valorlibra = 6.7
-    const valorbitcoin = 143.000
+    const valorbitcoin = data.BTCBRL.high
     const valorreal = null
+
 
     if (optionselect.value == "dolar") {
 
-        dolarvalorconvertido.innerHTML = new Intl.NumberFormat("en-US", {
+        valorconvertido.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
         }).format(inputvalor / valordodolar)
     }
 
     if (optionselect.value == "euro") {
-        dolarvalorconvertido.innerHTML = new Intl.NumberFormat("de-DE", {
+        valorconvertido.innerHTML = new Intl.NumberFormat("de-DE", {
             style: "currency",
             currency: "EUR"
         }).format(inputvalor / valordoeuro)
@@ -37,7 +41,7 @@ function ConverterValor() {
     }
 
     if (optionselect.value == "libra") {
-        dolarvalorconvertido.innerHTML = new Intl.NumberFormat("en-US", {
+        valorconvertido.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "GBP"
         }).format(inputvalor / valorlibra)
@@ -45,10 +49,11 @@ function ConverterValor() {
     }
 
     if (optionselect.value == "bitcoin") {
-        dolarvalorconvertido.innerHTML = new Intl.NumberFormat("de-DE", {
+        valorconvertido.innerHTML = new Intl.NumberFormat("de-DE", {
             style: "currency",
             currency: "BTC"
         }).format(inputvalor / valorbitcoin)
+        valorconvertido = Math.round(valorconvertido)
 
     }
 
@@ -92,7 +97,7 @@ function trocarmoeda() {
 
     if (optionselect.value == "bitcoin") {
 
-        selectmoeda.innerHTML = "Bitcoin"
+        selectmoeda.innerHTML = "bitcoin"
         trocadeimg.src = "./assets/bitcoin 1.png"
 
     }
@@ -104,8 +109,4 @@ function trocarmoeda() {
 
 optionselect.addEventListener("change", trocarmoeda)
 botaoconvert.addEventListener("click", ConverterValor)
-
-
-
-
 
