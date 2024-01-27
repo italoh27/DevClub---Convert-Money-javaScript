@@ -53,7 +53,6 @@ const ConverterValor = async ()=> {
             style: "currency",
             currency: "BTC"
         }).format(inputvalor / valorbitcoin)
-        valorconvertido = Math.round(valorconvertido)
 
     }
 
@@ -97,7 +96,7 @@ function trocarmoeda() {
 
     if (optionselect.value == "bitcoin") {
 
-        selectmoeda.innerHTML = "bitcoin"
+        selectmoeda.innerHTML = "Bitcoin"
         trocadeimg.src = "./assets/bitcoin 1.png"
 
     }
