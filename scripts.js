@@ -19,7 +19,7 @@ const ConverterValor = async ()=> {
 
     const valordodolar = data.USDBRL.high
     const valordoeuro = data.EURBRL.high
-    const valorlibra = 6.7
+    const valorlibra = 6.25
     const valorbitcoin = data.BTCBRL.high
     const valorreal = null
 
